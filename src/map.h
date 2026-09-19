@@ -23,6 +23,7 @@ private:
 public:
   Map();
   void gravity();
+  void removeRow();
   bool moveHorizontal(int dx);
   bool rotatePiece();
   void generatePiece();

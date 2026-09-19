@@ -78,12 +78,34 @@ void Map::gravity() {
   if (!canPlace(currentPiece)) {
     currentPiece.y--;
     drawPiece(true);
+    removeRow();
     generatePiece();
     return;
   }
 
   drawPiece(true);
   print();
+}
+void Map::removeRow() {
+  for (int y = 19; y >= 0; y--) {
+    if (board[y] != FINAL_ROW)
+      continue;
+
+    for (int row = y; row > 0; row--) {
+      board[row] = board[row - 1];
+
+      for (int x = 0; x < 16; x++) {
+        charBoard[row][x] = charBoard[row - 1][x];
+      }
+    }
+
+    board[0] = EMPTY_ROW;
+    for (int x = 0; x < 16; x++) {
+      charBoard[0][x] = (x < 2 || x > 13) ? '#' : '.';
+    }
+
+    y++;
+  }
 }
 
 bool Map::moveHorizontal(int dx) {

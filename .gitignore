@@ -1,0 +1,8 @@
+src/main
+*.o
+*.out
+*.exe
+*.stackdump
+
+.vscode/launch.json
+compile_commands.json
